@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+html{
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    max-width: 1440px;
+}
+
+.public-sans-700 {
+  font-family: "Public Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: bold;
+}

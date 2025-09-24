@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
+*{
+    border: 1px solid black;
+}
+
 html{
-    scroll-behavior: smooth;
     font-size: 62.5%;
     margin: 0;
     padding: 0;

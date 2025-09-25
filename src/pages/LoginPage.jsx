@@ -73,12 +73,12 @@ export const LoginPage = () => {
                     Remember me
                   </label>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  to={"/password-reset"}
                   className="text-[#3BA334] public-san text-[1.4rem] hover:underline"
                 >
                   Forgot password?
-                </a>
+                </Link>
               </div>
 
               {/* Login Button */}

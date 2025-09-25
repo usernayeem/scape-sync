@@ -9,6 +9,8 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { LoginPage } from "../pages/LoginPage";
 import { VerifyPage } from "../pages/VerifyPage";
 import { AccountCreatedPage } from "../pages/AccountCreatedPage";
+import { ResetPasswordPage } from "../pages/ResetPasswordPage";
+import { PasswordChangedSuccessPage } from "../pages/PasswordChangedSuccessPage";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
       {
         path: "/account-created",
         element: <AccountCreatedPage />,
+      },
+      {
+        path: "/password-reset",
+        element: <ResetPasswordPage />,
+      },
+      {
+        path: "/password-reset-successfull",
+        element: <PasswordChangedSuccessPage />,
       },
       {
         path: "*",

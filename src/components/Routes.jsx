@@ -5,6 +5,8 @@ import { Root } from "./Root";
 import { ErrorPage } from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import { UserRolePage } from "../pages/UserRolePage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { LoginPage } from "../pages/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ export const router = createBrowserRouter([
       {
         path: "/user-role",
         element: <UserRolePage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
       {
         path: "*",

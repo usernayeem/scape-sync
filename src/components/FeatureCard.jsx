@@ -9,7 +9,9 @@ export const FeatureCard = ({ icon, title, description }) => {
       <h3 className="text-gray-800 public-sans font-bold text-[1.8rem] text-start mt-[1.9rem] py-[0.4rem]">
         {title}
       </h3>
-      <p className="text-gray-600 public-san text-start">{description}</p>
+      <p className="text-gray-600 public-san text-start text-[1.4rem]">
+        {description}
+      </p>
     </div>
   );
 };

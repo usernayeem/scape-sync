@@ -13,6 +13,7 @@ html{
 body{
     max-width: 1440px;
     overflow-x: hidden;
+    background-color: #FDFFFD;
 }
 
 .public-sans {

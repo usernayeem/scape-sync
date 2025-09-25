@@ -1,11 +1,14 @@
-import { useState } from 'react'
-import { Hero } from '../components/Hero';
+import { useState } from "react";
+import { Hero } from "../components/Hero";
+import { Features } from "../components/Features";
 
 function Home() {
-
   return (
-    <Hero />
-  )
+    <div>
+      <Hero />
+      <Features />
+    </div>
+  );
 }
 
 export default Home;

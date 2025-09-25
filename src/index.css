@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 *{
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 html{
@@ -12,9 +12,10 @@ html{
 
 body{
     max-width: 1440px;
+    overflow-x: hidden;
 }
 
-.public-sans-700 {
+.public-sans {
   font-family: "Public Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;

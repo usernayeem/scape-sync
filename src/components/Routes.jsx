@@ -4,6 +4,7 @@ import React from "react";
 import { Root } from "./Root";
 import { ErrorPage } from "../pages/ErrorPage";
 import Home from "../pages/Home";
+import { UserRolePage } from "../pages/UserRolePage";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
         index: true,
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/user-role",
+        element: <UserRolePage />,
       },
       {
         path: "*",

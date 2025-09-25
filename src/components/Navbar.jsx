@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,12 +25,13 @@ export const Navbar = () => {
           <img src="../images/logo.png" alt="logo" />
         </div>
         <div>
-          <button
+          <Link
+            to={"/user-role"}
             className="bg-[#3BA334] text-white py-[1rem] px-[2.6rem] public-sans bold rounded-[0.8rem] fill-[#39A432] drop-shadow-xl/25 hover:bg-[#329A2C] transition-colors duration-200"
             style={{ cursor: "pointer" }}
           >
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </div>

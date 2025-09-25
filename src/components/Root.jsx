@@ -6,9 +6,7 @@ import { Footer } from "./Footer";
 export const Root = () => {
   return (
     <>
-      <Navbar />
       <Outlet />
-      <Footer />
     </>
   );
 };

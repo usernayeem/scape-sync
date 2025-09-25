@@ -21,7 +21,7 @@ export const Hero = () => {
         <img
           src="../images/leaf.png"
           alt="leaf"
-          className="absolute top-32 lg:top-48 left-1/4 hidden lg:block"
+          className="absolute top-0 left-1/4 hidden lg:block"
         />
         <div className="mt-[4rem] lg:mt-[6.5rem] flex flex-col sm:flex-row gap-[1.2rem] sm:gap-[1.8rem] items-center lg:items-start justify-center lg:justify-start">
           <div className="flex px-[1.2rem] sm:px-[1.4rem] py-[1rem] gap-[1.2rem] border border-[#ABDAA9] rounded-[1rem] cursor-pointer hover:bg-green-50 transition-colors w-full sm:w-auto max-w-[200px] sm:max-w-none">

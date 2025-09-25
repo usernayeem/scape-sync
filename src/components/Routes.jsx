@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import { UserRolePage } from "../pages/UserRolePage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { LoginPage } from "../pages/LoginPage";
+import { VerifyPage } from "../pages/VerifyPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/verify-email",
+        element: <VerifyPage />,
       },
       {
         path: "*",

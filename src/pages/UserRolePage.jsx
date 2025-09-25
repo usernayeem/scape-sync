@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const UserRolePage = () => {
   return (
@@ -60,7 +61,7 @@ export const UserRolePage = () => {
         {/* Role Selection Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[3.2rem]">
           {/* Client Card */}
-          <div className="role-card">
+          <Link to={"/register"} className="role-card">
             {/* Icon */}
             <div className="flex justify-center mb-[2.4rem]">
               <div className="w-[8rem] h-[8rem] rounded-[1.2rem] flex items-center justify-center">
@@ -81,10 +82,10 @@ export const UserRolePage = () => {
                 Browse services & hire service companies.
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Business Owner Card */}
-          <div className="role-card">
+          <Link to={"/register"} className="role-card">
             {/* Icon */}
             <div className="flex justify-center mb-[2.4rem]">
               <div className="w-[8rem] h-[8rem] rounded-[1.2rem] flex items-center justify-center">
@@ -105,7 +106,7 @@ export const UserRolePage = () => {
                 Manage jobs, staff & deliver work done.
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

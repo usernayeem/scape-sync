@@ -82,12 +82,14 @@ export const LoginPage = () => {
               </div>
 
               {/* Login Button */}
-              <button
-                type="submit"
-                className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200"
-              >
-                Login
-              </button>
+              <Link to={"/verify-email"}>
+                <button
+                  type="submit"
+                  className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200"
+                >
+                  Login
+                </button>
+              </Link>
 
               {/* OR Divider */}
               <div className="flex items-center gap-[1.6rem] my-[2.4rem]">

@@ -97,12 +97,14 @@ export const VerifyPage = () => {
           </div>
 
           {/* Verify Button */}
-          <button
-            type="submit"
-            className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 mb-[2.4rem]"
-          >
-            Verify
-          </button>
+          <Link to={"/account-created"}>
+            <button
+              type="submit"
+              className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 mb-[2.4rem]"
+            >
+              Verify
+            </button>
+          </Link>
 
           {/* Resend Code Link */}
           <div className="text-center">

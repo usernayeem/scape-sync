@@ -21,7 +21,7 @@ export const TestimonialCard = ({ avatar, name, title, testimonial }) => {
         <img
           src="../images/quote.png"
           alt="quote"
-          className="absolute -top-10 -left-5 h-30 z-0"
+          className="absolute -top-8 -left-5 h-20 z-0"
         />
         <p className="text-[#475569] public-san text-[1.6rem]/[2.4rem] relative z-10">
           {testimonial}

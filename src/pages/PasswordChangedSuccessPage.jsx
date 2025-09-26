@@ -6,13 +6,13 @@ export const PasswordChangedSuccessPage = () => {
     <div className="min-h-screen bg-[#FDFFFD] px-4 py-8">
       <div className="w-full max-w-[500px] mx-auto">
         {/* Logo */}
-        <div className="mb-[6rem]">
+        <Link to={"/"} className="mb-[6rem]">
           <img
             src="../images/logo.png"
             alt="ScapeSync logo"
-            className="h-[4rem]"
+            className="absolute left-8 top-8"
           />
-        </div>
+        </Link>
 
         {/* Success Container */}
         <div className="bg-white rounded-[1.6rem] p-[4rem] text-center">

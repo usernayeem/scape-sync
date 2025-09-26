@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navbar } from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import ApiService from "../services/api";
 import { useToast } from "../contexts/ToastContext";
@@ -122,8 +121,16 @@ export const RegisterPage = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-[#FDFFFD] flex items-center justify-center px-4 pb-[15rem]">
+      {/* Logo */}
+      <Link to={"/"} className="mb-[6rem]">
+        <img
+          src="../images/logo.png"
+          alt="ScapeSync logo"
+          className="absolute left-8 top-8"
+        />
+      </Link>
+
+      <div className="min-h-screen bg-[#FDFFFD] flex items-center justify-center px-4 pt-[10rem] pb-[15rem]">
         <div className="w-full max-w-[500px] mx-auto">
           {/* Form Container */}
           <div className="bg-white rounded-[1.6rem] p-[4rem]">

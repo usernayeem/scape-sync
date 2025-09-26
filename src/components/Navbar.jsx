@@ -27,7 +27,7 @@ export const Navbar = () => {
         <div>
           <Link
             to={"/user-role"}
-            className="bg-[#3BA334] text-white py-[1rem] px-[2.6rem] public-sans bold rounded-[0.8rem] fill-[#39A432] drop-shadow-xl/25 hover:bg-[#329A2C] transition-colors duration-200"
+            className="bg-[#3BA334] text-white text-[1.6rem] py-[1rem] px-[2.6rem] public-sans bold rounded-[0.8rem] fill-[#39A432] drop-shadow-xl/25 hover:bg-[#329A2C] transition-colors duration-200"
             style={{ cursor: "pointer" }}
           >
             Get Started

@@ -46,19 +46,19 @@ export const ResetPasswordPage = () => {
     <div className="min-h-screen bg-[#FDFFFD] px-4 py-8">
       <div className="w-full max-w-[500px] mx-auto">
         {/* Logo */}
-        <div className="mb-[6rem]">
+        <Link to={"/"} className="mb-[6rem]">
           <img
             src="../images/logo.png"
             alt="ScapeSync logo"
-            className="h-[4rem]"
+            className="absolute left-8 top-8"
           />
-        </div>
+        </Link>
 
         {/* Back Button */}
         <div className="mb-[4rem]">
           <Link
             to="/login"
-            className="flex items-center gap-[0.8rem] text-gray-600 public-san text-[1.4rem] hover:text-gray-800 transition-colors"
+            className="flex items-center gap-[0.8rem] text-gray-600 public-san text-[1.4rem] hover:text-gray-800 transition-colors  pt-[10rem]"
           >
             <svg
               className="w-[1.6rem] h-[1.6rem]"

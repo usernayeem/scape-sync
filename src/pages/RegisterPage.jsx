@@ -124,7 +124,7 @@ export const RegisterPage = () => {
       {/* Logo */}
       <Link to={"/"} className="mb-[6rem]">
         <img
-          src="../images/logo.png"
+          src="../images/logo.webp"
           alt="ScapeSync logo"
           className="absolute left-8 top-8"
         />
@@ -206,7 +206,7 @@ export const RegisterPage = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-[1.6rem] top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    <img src="../images/eye.png" alt="eye" />
+                    <img src="../images/eye.webp" alt="eye" />
                   </button>
                 </div>
               </div>
@@ -229,7 +229,7 @@ export const RegisterPage = () => {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-[1.6rem] top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    <img src="../images/eye.png" alt="eye" />
+                    <img src="../images/eye.webp" alt="eye" />
                   </button>
                 </div>
               </div>

@@ -3,21 +3,21 @@ import { TestimonialCard } from "./TestimonialCard";
 
 const testimonialData = [
   {
-    avatar: "../images/Farzana.png",
+    avatar: "../images/Farzana.webp",
     name: "Farzana H.",
     title: "Owner, CleanPro Services",
     testimonial:
       "This app completely changed the way we manage our team. Assigning jobs takes minutes, and we never miss an update.",
   },
   {
-    avatar: "../images/Ahmed.png",
+    avatar: "../images/Ahmed.webp",
     name: "Ahmed R.",
     title: "Technician",
     testimonial:
       "I love how easy it is to see my daily tasks and track my time. It makes my job stress-free.",
   },
   {
-    avatar: "../images/Farzanah.png",
+    avatar: "../images/Farzanah.webp",
     name: "Farzana H.",
     title: "Rafiq M., Homeowner",
     testimonial:

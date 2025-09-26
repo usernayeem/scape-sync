@@ -10,7 +10,7 @@ export const BuildForEveryone = () => {
         </h2>
         {/* Decorative line under title */}
         <img
-          src="../images/title-line.png"
+          src="../images/title-line.webp"
           alt="line"
           className="absolute top-3"
         />
@@ -25,7 +25,7 @@ export const BuildForEveryone = () => {
         {/* Small curved arrow - top left */}
         <div className="absolute left-[-8rem] top-[10rem] hidden lg:block">
           <img
-            src="../images/left-arrow.png"
+            src="../images/left-arrow.webp"
             alt="arrow"
             className=" -mt-70 ml-70 h-40 hidden lg:block"
           />
@@ -33,7 +33,7 @@ export const BuildForEveryone = () => {
         {/* Small curved arrow - top left */}
         <div className="absolute left-[-8rem] top-[10rem] hidden lg:block">
           <img
-            src="../images/right-arrow.png"
+            src="../images/right-arrow.webp"
             alt="arrow"
             className="-mt-70 ml-470 h-90 hidden lg:block"
           />
@@ -75,12 +75,12 @@ export const BuildForEveryone = () => {
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative">
             <img
-              src="../images/hand-bg.png"
+              src="../images/hand-bg.webp"
               alt="hand background"
               className="absolute top-0 left-0 w-full h-full object-cover -z-10"
             />
             <img
-              src="../images/mobile1.png"
+              src="../images/mobile1.webp"
               alt="Mobile app showing service booking"
               className="max-w-full h-auto relative z-10"
             />
@@ -128,12 +128,12 @@ export const BuildForEveryone = () => {
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative">
             <img
-              src="../images/hand-bg.png"
+              src="../images/hand-bg.webp"
               alt="hand background"
               className="absolute top-0 left-0 w-full h-full object-cover -z-10"
             />
             <img
-              src="../images/mobile2.png"
+              src="../images/mobile2.webp"
               alt="Mobile app showing task management"
               className="max-w-full h-auto relative z-10"
             />
@@ -181,12 +181,12 @@ export const BuildForEveryone = () => {
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative">
             <img
-              src="../images/hand-bg.png"
+              src="../images/hand-bg.webp"
               alt="hand background"
               className="absolute top-0 left-0 w-full h-full object-cover -z-10"
             />
             <img
-              src="../images/mobile3.png"
+              src="../images/mobile3.webp"
               alt="Mobile app showing dashboard"
               className="max-w-full h-auto relative z-10"
             />

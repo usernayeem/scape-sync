@@ -3,25 +3,25 @@ import { FeatureCard } from "./FeatureCard";
 
 const cardItems = [
   {
-    icon: "../images/calender.png",
+    icon: "../images/calender.webp",
     title: "Easy Service Booking",
     description:
       "Streamlined booking process for clients with service catalogs and availability.",
   },
   {
-    icon: "../images/tracking.png",
+    icon: "../images/tracking.webp",
     title: "Real-Time Tracking",
     description:
       "Monitor job progress, employee hours, and project timelines with live updates.",
   },
   {
-    icon: "../images/analytics.png",
+    icon: "../images/analytics.webp",
     title: "Performance Analytics",
     description:
       "Comprehensive reporting and insights to improve business operations and efficiency.",
   },
   {
-    icon: "../images/secure.png",
+    icon: "../images/secure.webp",
     title: "Secure & Reliable",
     description:
       "Enterprise-grade security with 99.9% uptime guarantee and data protection.",

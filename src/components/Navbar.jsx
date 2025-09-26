@@ -21,9 +21,9 @@ export const Navbar = () => {
       }`}
     >
       <div className="w-11/12 h-[10rem] m-auto flex items-center justify-between">
-        <div>
-          <img src="../images/logo.png" alt="logo" />
-        </div>
+        <Link to={"/"} className="cursor-pointer">
+          <img src="../images/logo.webp" alt="logo" />
+        </Link>
         <div>
           <Link
             to={"/user-role"}

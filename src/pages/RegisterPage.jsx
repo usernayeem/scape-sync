@@ -1,11 +1,124 @@
 import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ApiService from "../services/api";
+import { useToast } from "../contexts/ToastContext";
 
 export const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const navigate = useNavigate();
+  const showToast = useToast();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = () => {
+    if (!formData.firstName.trim()) {
+      showToast.error("First name is required");
+      return false;
+    }
+    if (!formData.lastName.trim()) {
+      showToast.error("Last name is required");
+      return false;
+    }
+    if (!formData.email.trim()) {
+      showToast.error("Email is required");
+      return false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      showToast.error("Please enter a valid email address");
+      return false;
+    }
+    if (!formData.password) {
+      showToast.error("Password is required");
+      return false;
+    } else if (formData.password.length < 8) {
+      showToast.error("Password must be at least 8 characters long");
+      return false;
+    }
+    if (!formData.confirmPassword) {
+      showToast.error("Please confirm your password");
+      return false;
+    } else if (formData.password !== formData.confirmPassword) {
+      showToast.error("Passwords do not match");
+      return false;
+    }
+    if (!agreed) {
+      showToast.error(
+        "You must agree to the Terms of Service and Privacy Policy"
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await ApiService.register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        terms: agreed,
+      });
+
+      // If registration succeeds, send OTP
+      await ApiService.resendOtp(formData.email);
+      sessionStorage.setItem("verificationEmail", formData.email);
+      showToast.success(
+        "Email sent. Please check your email for verification code."
+      );
+      navigate("/verify-email");
+    } catch (error) {
+      // Check if it's an "email already taken" error
+      if (
+        error.message &&
+        error.message.toLowerCase().includes("email has already been taken")
+      ) {
+        try {
+          // Try to send OTP to existing email
+          await ApiService.resendOtp(formData.email);
+          sessionStorage.setItem("verificationEmail", formData.email);
+          showToast.info("Account exists. Please Login.");
+          navigate("/login");
+        } catch (otpError) {
+          showToast.error(
+            "Account exists but couldn't send verification email. Please try logging in instead."
+          );
+        }
+      } else {
+        showToast.error(
+          error.message || "Registration failed. Please try again."
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -25,7 +138,7 @@ export const RegisterPage = () => {
             </div>
 
             {/* Form */}
-            <form className="space-y-[2.4rem]">
+            <form onSubmit={handleSubmit} className="space-y-[2.4rem]">
               {/* First Name and Last Name Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-[1.6rem]">
                 <div>
@@ -34,6 +147,9 @@ export const RegisterPage = () => {
                   </label>
                   <input
                     type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
                     className="w-full px-[1.6rem] py-[1.2rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                   />
                 </div>
@@ -43,7 +159,9 @@ export const RegisterPage = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder=""
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
                     className="w-full px-[1.6rem] py-[1.2rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                   />
                 </div>
@@ -56,7 +174,9 @@ export const RegisterPage = () => {
                 </label>
                 <input
                   type="email"
-                  placeholder=""
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-[1.6rem] py-[1.2rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                 />
               </div>
@@ -69,7 +189,9 @@ export const RegisterPage = () => {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder=""
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     className="w-full px-[1.6rem] py-[1.2rem] pr-[4.8rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                   />
                   <button
@@ -90,7 +212,9 @@ export const RegisterPage = () => {
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
-                    placeholder=""
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
                     className="w-full px-[1.6rem] py-[1.2rem] pr-[4.8rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                   />
                   <button
@@ -116,7 +240,7 @@ export const RegisterPage = () => {
                   htmlFor="terms"
                   className="text-gray-600 public-san text-[1.4rem]/[2rem] cursor-pointer"
                 >
-                  I agree to Tech Talent{" "}
+                  I agree to ScapeSync{" "}
                   <a href="#" className="text-[#3BA334] hover:underline">
                     Terms of Service
                   </a>{" "}
@@ -128,14 +252,39 @@ export const RegisterPage = () => {
               </div>
 
               {/* Create Account Button */}
-              <Link to={"/verify-email"}>
-                <button
-                  type="submit"
-                  className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200"
-                >
-                  Create Account
-                </button>
-              </Link>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {loading ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Creating Account...
+                  </>
+                ) : (
+                  "Create Account"
+                )}
+              </button>
 
               {/* OR Divider */}
               <div className="flex items-center gap-[1.6rem] my-[2.4rem]">

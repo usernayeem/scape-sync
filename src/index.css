@@ -1,24 +1,102 @@
 @import "tailwindcss";
 
-*{
+* {
     /* border: 1px solid black; */
 }
 
-html{
+html {
     font-size: 62.5%;
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     max-width: 1440px;
     overflow-x: hidden;
     background-color: #FDFFFD;
 }
 
 .public-sans {
-  font-family: "Public Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: bold;
+    font-family: "Public Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: bold;
+}
+
+/* Custom Toast Styling */
+.Toastify__toast {
+    font-size: 1.4rem !important;
+    font-family: "Public Sans", sans-serif !important;
+    border-radius: 0.8rem !important;
+    padding: 1.6rem !important;
+    min-height: auto !important;
+    font-weight: 500 !important;
+}
+
+.Toastify__toast-body {
+    font-size: 1.4rem !important;
+    line-height: 1.6 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: 500 !important;
+}
+
+.Toastify__toast--success {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+    border: 1px solid #bbf7d0 !important;
+}
+
+.Toastify__toast--error {
+    background-color: #fef2f2 !important;
+    color: #dc2626 !important;
+    border: 1px solid #fecaca !important;
+}
+
+.Toastify__toast--info {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+.Toastify__toast--warning {
+    background-color: #fffbeb !important;
+    color: #d97706 !important;
+    border: 1px solid #fed7aa !important;
+}
+
+.Toastify__progress-bar {
+    height: 3px !important;
+}
+
+.Toastify__progress-bar--success {
+    background: #22c55e !important;
+}
+
+.Toastify__progress-bar--error {
+    background: #ef4444 !important;
+}
+
+.Toastify__progress-bar--info {
+    background: #3b82f6 !important;
+}
+
+.Toastify__progress-bar--warning {
+    background: #f59e0b !important;
+}
+
+.Toastify__close-button {
+    color: inherit !important;
+    opacity: 0.7 !important;
+    font-size: 1.6rem !important;
+}
+
+.Toastify__close-button:hover {
+    opacity: 1 !important;
+}
+
+.Toastify__toast-container {
+    width: auto !important;
+    min-width: 300px !important;
+    max-width: 500px !important;
 }

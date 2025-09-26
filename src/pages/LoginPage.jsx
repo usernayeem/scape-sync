@@ -1,10 +1,73 @@
 import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ApiService from "../services/api";
+import { useToast } from "../contexts/ToastContext";
 
 export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const showToast = useToast();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = () => {
+    if (!formData.email.trim()) {
+      showToast.error("Email is required");
+      return false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      showToast.error("Please enter a valid email address");
+      return false;
+    }
+    if (!formData.password) {
+      showToast.error("Password is required");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await ApiService.login({
+        email: formData.email,
+        password: formData.password,
+        rememberMe: rememberMe,
+      });
+
+      if (response.token) {
+        ApiService.setAuthToken(response.token, rememberMe);
+      }
+
+      showToast.success("Login successful! Welcome back.");
+      navigate("/");
+    } catch (error) {
+      showToast.error(
+        error.message || "Login failed. Please check your credentials."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -24,7 +87,7 @@ export const LoginPage = () => {
             </div>
 
             {/* Form */}
-            <form className="space-y-[2.4rem]">
+            <form onSubmit={handleSubmit} className="space-y-[2.4rem]">
               {/* Email Address */}
               <div>
                 <label className="block text-gray-600 public-san text-[1.4rem] mb-[0.8rem]">
@@ -32,6 +95,9 @@ export const LoginPage = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-[1.6rem] py-[1.2rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                 />
               </div>
@@ -44,6 +110,9 @@ export const LoginPage = () => {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     className="w-full px-[1.6rem] py-[1.2rem] pr-[4.8rem] border border-[#E2E8F0] rounded-[0.8rem] text-[1.6rem] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#3BA334] transition-colors"
                   />
                   <button
@@ -82,14 +151,39 @@ export const LoginPage = () => {
               </div>
 
               {/* Login Button */}
-              <Link to={"/verify-email"}>
-                <button
-                  type="submit"
-                  className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200"
-                >
-                  Login
-                </button>
-              </Link>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {loading ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Logging in...
+                  </>
+                ) : (
+                  "Login"
+                )}
+              </button>
 
               {/* OR Divider */}
               <div className="flex items-center gap-[1.6rem] my-[2.4rem]">

@@ -1,5 +1,7 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ApiService from "../services/api";
+import { useToast } from "../contexts/ToastContext";
 
 export const VerifyPage = () => {
   const [verificationCode, setVerificationCode] = useState([
@@ -8,8 +10,22 @@ export const VerifyPage = () => {
     "",
     "",
     "",
+    "",
   ]);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
   const inputRefs = useRef([]);
+  const navigate = useNavigate();
+  const showToast = useToast();
+
+  useEffect(() => {
+    const storedEmail = sessionStorage.getItem("verificationEmail");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    } else {
+      navigate("/register");
+    }
+  }, [navigate]);
 
   const handleInputChange = (index, value) => {
     if (value.length <= 1) {
@@ -17,17 +33,58 @@ export const VerifyPage = () => {
       newCode[index] = value;
       setVerificationCode(newCode);
 
-      // Auto-focus next input
-      if (value && index < 4) {
+      if (value && index < 5) {
         inputRefs.current[index + 1]?.focus();
       }
     }
   };
 
   const handleKeyDown = (index, e) => {
-    // Handle backspace to go to previous input
     if (e.key === "Backspace" && !verificationCode[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleVerify = async () => {
+    const otp = verificationCode.join("");
+
+    if (otp.length !== 6) {
+      showToast.error("Please enter all 6 digits of the verification code.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await ApiService.verifyOtp({
+        email: email,
+        otp: otp,
+      });
+
+      sessionStorage.removeItem("verificationEmail");
+      showToast.success("Email verified successfully!");
+      navigate("/account-created");
+    } catch (error) {
+      showToast.error(
+        error.message || "Verification failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    setLoading(true);
+
+    try {
+      await ApiService.resendOtp(email);
+      showToast.success("Verification code has been resent to your email.");
+    } catch (error) {
+      showToast.error(
+        error.message || "Failed to resend code. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -75,8 +132,8 @@ export const VerifyPage = () => {
             </h1>
             <p className="text-gray-600 public-san text-[1.4rem]/[2rem] max-w-[400px] mx-auto">
               We've emailed a 6-digit confirmation code to{" "}
-              <span className="text-gray-800 font-medium">acbd@cmail</span>,
-              please enter the code in below box to verify your email.
+              <span className="text-gray-800 font-medium">{email}</span>, please
+              enter the code in below box to verify your email.
             </p>
           </div>
 
@@ -92,25 +149,55 @@ export const VerifyPage = () => {
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 className="w-[4.8rem] h-[4.8rem] border border-[#E2E8F0] rounded-[0.8rem] text-center text-[2rem] font-semibold text-gray-800 focus:outline-none focus:border-[#3BA334] transition-colors"
                 maxLength={1}
+                disabled={loading}
               />
             ))}
           </div>
 
           {/* Verify Button */}
-          <Link to={"/account-created"}>
-            <button
-              type="submit"
-              className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 mb-[2.4rem]"
-            >
-              Verify
-            </button>
-          </Link>
+          <button
+            onClick={handleVerify}
+            disabled={loading}
+            className="w-full bg-[#3BA334] text-white py-[1.4rem] px-[2.4rem] public-sans font-bold text-[1.6rem] rounded-[0.8rem] hover:bg-[#329A2C] transition-colors duration-200 mb-[2.4rem] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Verifying...
+              </>
+            ) : (
+              "Verify"
+            )}
+          </button>
 
           {/* Resend Code Link */}
           <div className="text-center">
             <p className="text-gray-600 public-san text-[1.4rem]">
               Don't have a code?{" "}
-              <button className="text-[#3BA334] hover:underline">
+              <button
+                onClick={handleResendCode}
+                disabled={loading}
+                className="text-[#3BA334] hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Resend code
               </button>
             </p>

@@ -6,7 +6,7 @@ export const Footer = () => {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="../images/footer-background.webp"
+          src="/images/footer-background.webp"
           className="w-full h-full object-cover"
         />
       </div>
@@ -18,7 +18,7 @@ export const Footer = () => {
             {/* Logo */}
             <div className="mb-[2.4rem]">
               <img
-                src="../images/footer-logo.webp"
+                src="/images/footer-logo.webp"
                 alt="ScapeSync logo"
                 className="h-[4rem]"
               />
@@ -40,7 +40,7 @@ export const Footer = () => {
               {/* Apple App Store */}
               <div className="flex px-[1.2rem] sm:px-[1.4rem] py-[1rem] gap-[1.2rem] border border-white/30 rounded-[1rem] cursor-pointer hover:bg-white/10 transition-colors w-full sm:w-auto max-w-[200px] sm:max-w-none">
                 <img
-                  src="../images/white-apple.webp"
+                  src="/images/white-apple.webp"
                   alt="apple store icon"
                   className="w-[24px] h-[24px] sm:w-auto sm:h-auto"
                 />
@@ -57,7 +57,7 @@ export const Footer = () => {
               {/* Google Play Store */}
               <div className="flex px-[1.2rem] sm:px-[1.4rem] py-[1rem] gap-[1.2rem] border border-white/30 rounded-[1rem] cursor-pointer hover:bg-white/10 transition-colors w-full sm:w-auto max-w-[200px] sm:max-w-none">
                 <img
-                  src="../images/playstore.webp"
+                  src="/images/playstore.webp"
                   alt="google play store icon"
                   className="w-[24px] h-[24px] sm:w-auto sm:h-auto"
                 />
@@ -81,7 +81,7 @@ export const Footer = () => {
             className="w-[3.6rem] h-[3.6rem] rounded-[0.6rem] flex items-center justify-center hover:bg-white/20 transition-colors"
           >
             <img
-              src="../images/youtube.webp"
+              src="/images/youtube.webp"
               alt="YouTube"
               className="w-[18px] h-[18px]"
             />
@@ -91,7 +91,7 @@ export const Footer = () => {
             className="w-[3.6rem] h-[3.6rem] rounded-[0.6rem] flex items-center justify-center hover:bg-white/20 transition-colors"
           >
             <img
-              src="../images/twitter.webp"
+              src="/images/twitter.webp"
               alt="X"
               className="w-[14px] h-[14px]"
             />
@@ -100,14 +100,14 @@ export const Footer = () => {
             href="#"
             className="w-[3.6rem] h-[3.6rem] rounded-[0.6rem] flex items-center justify-center hover:bg-white/20 transition-colors"
           >
-            <img src="../images/facebook.webp" className="w-[18px] h-[18px]" />
+            <img src="/images/facebook.webp" className="w-[18px] h-[18px]" />
           </a>
           <a
             href="#"
             className="w-[3.6rem] h-[3.6rem] rounded-[0.6rem] flex items-center justify-center hover:bg-white/20 transition-colors"
           >
             <img
-              src="../images/instagram.webp"
+              src="/images/instagram.webp"
               alt="Instagram"
               className="w-[18px] h-[18px]"
             />

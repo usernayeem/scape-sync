@@ -48,7 +48,7 @@ export const ResetPasswordPage = () => {
         {/* Logo */}
         <Link to={"/"} className="mb-[6rem]">
           <img
-            src="../images/logo.webp"
+            src="/images/logo.webp"
             alt="ScapeSync logo"
             className="absolute left-8 top-8"
           />

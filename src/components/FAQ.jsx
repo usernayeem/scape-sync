@@ -60,8 +60,8 @@ export const FAQ = () => {
                 <img
                   src={
                     openIndex === index
-                      ? "../images/minus.webp"
-                      : "../images/plus.webp"
+                      ? "/images/minus.webp"
+                      : "/images/plus.webp"
                   }
                   alt={openIndex === index ? "collapse" : "expand"}
                   className={`w-[1.6rem] h-[1.6rem] transition-transform duration-300 ${

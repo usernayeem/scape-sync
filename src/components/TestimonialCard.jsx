@@ -19,7 +19,7 @@ export const TestimonialCard = ({ avatar, name, title, testimonial }) => {
       {/* Quote Icon and Testimonial Text */}
       <div className="relative">
         <img
-          src="../images/quote.webp"
+          src="/images/quote.webp"
           alt="quote"
           className="absolute -top-8 -left-5 h-20 z-0"
         />

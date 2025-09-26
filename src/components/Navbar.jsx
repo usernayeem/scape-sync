@@ -22,7 +22,7 @@ export const Navbar = () => {
     >
       <div className="w-11/12 h-[10rem] m-auto flex items-center justify-between">
         <Link to={"/"} className="cursor-pointer">
-          <img src="../images/logo.webp" alt="logo" />
+          <img src="/images/logo.webp" alt="logo" />
         </Link>
         <div>
           <Link

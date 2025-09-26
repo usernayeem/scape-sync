@@ -41,7 +41,7 @@ export const UserRolePage = () => {
         {/* Logo */}
         <div className="text-center mb-[4rem]">
           <img
-            src="../images/logo.webp"
+            src="/images/logo.webp"
             alt="ScapeSync logo"
             className="mx-auto mb-[3.2rem]"
           />
@@ -66,7 +66,7 @@ export const UserRolePage = () => {
             <div className="flex justify-center mb-[2.4rem]">
               <div className="w-[8rem] h-[8rem] rounded-[1.2rem] flex items-center justify-center">
                 <img
-                  src="../images/client.webp"
+                  src="/images/client.webp"
                   alt="Client"
                   className="w-[5.6rem] h-[5.6rem] object-contain"
                 />
@@ -90,7 +90,7 @@ export const UserRolePage = () => {
             <div className="flex justify-center mb-[2.4rem]">
               <div className="w-[8rem] h-[8rem] rounded-[1.2rem] flex items-center justify-center">
                 <img
-                  src="../images/business.webp"
+                  src="/images/business.webp"
                   alt="Business Owner"
                   className="w-[5.6rem] h-[5.6rem] object-contain"
                 />
